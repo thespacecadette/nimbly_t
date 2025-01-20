@@ -8,6 +8,11 @@ import {
   Route
 } from "react-router-dom";
 
+// theming
+import { ThemeProvider } from "@mui/material";
+import MuiCssBaseline from '@mui/material/CssBaseline'
+import theme from './styles/theme';
+
 // store
 import { Provider } from 'react-redux'
 import { store, persistor } from './store/index'
