@@ -1,5 +1,4 @@
-
-  {
+{
   "name": "nimbly-tech-test",
   "version": "1.0.0",
   "license": "MIT",
@@ -35,6 +34,7 @@
     "react-dom": "^18.2.0",
     "react-redux": "^9.1.0",
     "react-router-dom": "^6.21.3",
+    "redux-persist": "^6.0.0",
     "simple-cipher": "^1.0.2",
     "stream-browserify": "^3.0.0"
   },

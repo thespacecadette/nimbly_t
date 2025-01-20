@@ -10,7 +10,8 @@ import {
 
 // store
 import { Provider } from 'react-redux'
-import store from './store'
+import { store, persistor } from './store/index'
+import { PersistGate } from 'redux-persist/integration/react'
 
 // pages
 import Login from './components/pages/auth/login'
@@ -22,21 +23,27 @@ const rootElement = document.getElementById("root");
 // New as of React18
 createRoot(rootElement!).render(
   <React.StrictMode>
+    <MuiCssBaseline>
       <Provider store={store}>
-          <HashRouter>
-            <Routes>
-              <Route 
-                path="*" 
-                element={<Login />}
-              />
-              {/** Protected Routes */}
-              <Route 
-                path="dashboard" 
-                element={<Dashboard />} 
-              />
-            </Routes>
-          </HashRouter>
+      <PersistGate loading={null} persistor={persistor}>
+        <ThemeProvider theme={theme}>
+            <HashRouter>
+              <Routes>
+                <Route 
+                  path="*" 
+                  element={<Login />}
+                />
+                {/** Protected Routes */}
+                <Route 
+                  path="dashboard" 
+                  element={<Dashboard />} 
+                />
+              </Routes>
+            </HashRouter>
+          </ThemeProvider>
+        </PersistGate>
       </Provider>
+    </MuiCssBaseline>
   </React.StrictMode>
 );
 
