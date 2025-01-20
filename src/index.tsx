@@ -20,6 +20,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 
 // pages
 import Login from './components/pages/auth/login'
+import Logout from './components/pages/auth/logout'
 import Dashboard from './components/pages/dashboard/index'
 
 // New as of React18
@@ -37,6 +38,10 @@ createRoot(rootElement!).render(
                 <Route 
                   path="*" 
                   element={<Login />}
+                />
+                <Route 
+                  path="logout" 
+                  element={<Logout />}
                 />
                 {/** Protected Routes */}
                 <Route 

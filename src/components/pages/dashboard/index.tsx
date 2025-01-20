@@ -11,6 +11,10 @@ import CommentIcon from '@mui/icons-material/Comment';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
+// template
+// FIXME: add header/footer etc to template in route integration instead of page level
+import { Header } from './../../ui/header';
+
 // services
 import service from '../../../services/service';
 
@@ -59,6 +63,7 @@ export default function DashboardIndex() {
 
   return (
     <>
+    <Header />
     <List sx={{ width: '100%', maxWidth: 1024, bgcolor: 'background.paper' }}>
       {todoData.map(({ id, todo }) => {
         const labelId = `checkbox-list-label-${id}`;
