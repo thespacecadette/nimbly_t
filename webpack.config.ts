@@ -16,14 +16,14 @@ const config: Configuration = {
 		'development',
 	entry: './src/index.tsx',
 	devServer: {
-		// allowedHosts: [`${process.env.FAUX_SERVER_HOST}`],
+		allowedHosts: [`${process.env.API_DOMAIN}`],
 		client: {
 			progress: true,
 		},
 		host: process.env.HOST,
 		hot: true,
 		onListening: (devServer) => {
-			console.log(`now listening on port ${process.env.PORT}`);
+			console.log('listening');
 		},
 		port: process.env.PORT,
 	},
@@ -37,6 +37,18 @@ const config: Configuration = {
 			{
 				test: /\.css$/,
 				use: ['style-loader', 'css-loader'],
+			},
+			{
+				test: /\.(woff|woff2|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+				use: [
+					{
+						loader: 'file-loader',
+						options: {
+							name: '[name].[ext]',
+							outputPath: 'src/styles/fonts/',
+						},
+					},
+				],
 			},
 		],
 	},

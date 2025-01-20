@@ -14,6 +14,7 @@ import store from './store'
 
 // pages
 import Login from './components/pages/auth/login'
+import Dashboard from './components/pages/dashboard/index'
 
 // New as of React18
 const rootElement = document.getElementById("root");
@@ -27,6 +28,11 @@ createRoot(rootElement!).render(
               <Route 
                 path="*" 
                 element={<Login />}
+              />
+              {/** Protected Routes */}
+              <Route 
+                path="dashboard" 
+                element={<Dashboard />} 
               />
             </Routes>
           </HashRouter>
