@@ -8,6 +8,8 @@ import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import CommentIcon from '@mui/icons-material/Comment';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 // services
 import service from '../../../services/service';
@@ -23,11 +25,13 @@ export default function DashboardIndex() {
 
   // page component state
   const [checked, setChecked] = React.useState([0]);
+  const [paginate, setPaginate] = React.useState(1);
 
   // data
   React.useEffect(() => {
+    // FIXME: add to centralised function (reuse)
     service.get(
-      `${process.env.API_DOMAIN}/todos`,
+      `${process.env.API_DOMAIN}/todos?limit=10&skip=${paginate === 1 ? 0 : paginate * 10}`,
     ).then((payload): void => {
       dispatch(getTodos(payload))
     }).catch(error => {
@@ -54,6 +58,7 @@ export default function DashboardIndex() {
   }
 
   return (
+    <>
     <List sx={{ width: '100%', maxWidth: 1024, bgcolor: 'background.paper' }}>
       {todoData.map(({ id, todo }) => {
         const labelId = `checkbox-list-label-${id}`;
@@ -84,5 +89,26 @@ export default function DashboardIndex() {
         );
       })}
     </List>
+    <Stack spacing={2}>
+      <Pagination
+        count={10}
+        onChange={(event, page) => {
+          setPaginate(page);
+
+          // FIXME: centralise on this page, used more than once
+          service.get(
+            `${process.env.API_DOMAIN}/todos?limit=10&skip=${page === 1 ? 0 : page * 10}`,
+          ).then((payload): void => {
+            dispatch(getTodos(payload))
+          }).catch(error => {
+            alert('Error fetching your todos! :(')
+          });
+        }}
+        variant="outlined"
+        color="primary"
+        page={paginate}
+      />
+    </Stack>
+  </>
   );
 }
