@@ -1,15 +1,23 @@
-import storage from 'redux-persist/lib/storage';
-import { persistReducer } from 'redux-persist';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+
+// reducers
 import userReducer from './user/slice';
 import { UserStore } from './user/initialState';
+import { TodoStore } from './todos/initialState';
+import todoReducer from './todos/slice';
+
+// persistence
 import persistStore from 'redux-persist/es/persistStore';
+import storage from 'redux-persist/lib/storage';
+import { persistReducer } from 'redux-persist';
 
 export interface Store {
 	user: UserStore;
+	todos: TodoStore;
 }
 
 const reducers = combineReducers({
+	todos: todoReducer,
 	user: userReducer,
 });
 const persistConfig = {
