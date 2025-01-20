@@ -15,9 +15,19 @@ export const todoSlice = createSlice({
 
 			return state;
 		},
+		deleteTodos: (state) => {
+			state = {
+				todos: [],
+				total: 0,
+				skip: 0,
+				limit: 0,
+			};
+
+			return state;
+		},
 	},
 });
 
-export const { get } = todoSlice.actions;
+export const { get, deleteTodos } = todoSlice.actions;
 
 export default todoSlice.reducer;

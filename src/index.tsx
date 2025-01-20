@@ -22,6 +22,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import Login from './components/pages/auth/login'
 import Logout from './components/pages/auth/logout'
 import Dashboard from './components/pages/dashboard/index'
+import Splash from './components/pages/auth/splash'
 
 // New as of React18
 const rootElement = document.getElementById("root");
@@ -37,11 +38,15 @@ createRoot(rootElement!).render(
               <Routes>
                 <Route 
                   path="*" 
-                  element={<Login />}
+                  element={<Splash />}
                 />
                 <Route 
                   path="logout" 
                   element={<Logout />}
+                />
+                <Route 
+                  path="login" 
+                  element={<Login />}
                 />
                 {/** Protected Routes */}
                 <Route 

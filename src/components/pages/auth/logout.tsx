@@ -7,12 +7,11 @@ import { Link } from '../../ui/link';
 
 import service from '../../../services/service';
 import { login } from '../../../store/user/slice';
+import { deleteTodos as clearUserData } from '../../../store/todos/slice';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 export default function Logout() {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   useEffect(() => {
     // TODO: no proper logout API, logging in with 0 minute expiry
@@ -36,8 +35,9 @@ export default function Logout() {
         image: '',
         accessToken: '',
         refreshToken: '',
-      }))
-      navigate('/dashboard');
+      }));
+
+      dispatch(clearUserData());
     }).catch(error => {
       alert('error logging out');
       // TODO: would add audit logging here
