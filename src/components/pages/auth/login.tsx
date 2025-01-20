@@ -12,8 +12,8 @@ import { login } from '../../../store/user/slice';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
-  const [username, setEmail] = useState<string>('tammy@test.tech')
-  const [password, setPassword] = useState<string>('password123')
+  const [username, setEmail] = useState<string>('emilys')
+  const [password, setPassword] = useState<string>('emilyspass')
   const [isInvalidLogin, setIsInvalidLogin] = useState<boolean>(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -24,7 +24,7 @@ export default function Login() {
     width: '100%',
   }}>
     <Logo 
-      title="Claro Money" 
+      title="Nimbly" 
       width={200}  
     />
     <Card style={{
@@ -53,7 +53,6 @@ export default function Login() {
         value={password}
         onCallback={(text) => {
           // TODO: 
-          // setPassword(encrypt({ text }))
         }}
       />
       <Button 
@@ -62,7 +61,21 @@ export default function Login() {
         text="Login"
         wide={true}
         onCallback={() => {
-          navigate('/dashboard');
+          service.post(
+            {
+              username,
+              password,
+              expiresInMinutes: 1,
+            },
+            `${process.env.API_DOMAIN}/auth/login`,
+            true, // withCredentials
+          ).then((payload): void => {
+            setIsInvalidLogin(false)
+            dispatch(login(payload))
+            navigate('/dashboard');
+          }).catch(error => {
+            setIsInvalidLogin(true)
+          });
         }}
       />
       <Link to="/forgot-password" name="Forgot password" />

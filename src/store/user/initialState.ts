@@ -1,23 +1,25 @@
 export interface UserStore {
 	id: number;
-	isAuthenticated: boolean;
+	username: string;
 	firstName: string;
 	lastName: string;
-	dob: string;
-	mobileNumber: string;
-	lastLogin: string;
-	emailAddress: string;
+	email: string;
+	gender: string;
+	image: string;
+	accessToken: string;
+	refreshToken: string;
 }
 
 const userStore: UserStore = {
 	id: -1,
-	isAuthenticated: false,
+	username: '',
+	email: '',
 	firstName: '',
 	lastName: '',
-	dob: '',
-	mobileNumber: '',
-	lastLogin: '',
-	emailAddress: '',
+	gender: '',
+	image: '',
+	accessToken: '',
+	refreshToken: '',
 };
 
 export default userStore;

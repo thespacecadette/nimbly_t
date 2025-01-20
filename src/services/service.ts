@@ -32,12 +32,13 @@ const get = async (url: string): Promise<any> => {
 	return result;
 };
 
-const post = async (data: any, url: string): Promise<CreateResponse> => {
+const post = async (data: any, url: string, withCredentials: boolean = false): Promise<CreateResponse> => {
 	const service = Service();
 
 	const result = service
 		.post(url, {
-			data,
+			...data,
+			withCredentials,
 		})
 		.then(function (response: AxiosResponse) {
 			// handle success

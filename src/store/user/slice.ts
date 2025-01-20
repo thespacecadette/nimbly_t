@@ -8,13 +8,14 @@ export const userSlice = createSlice({
 		login: (state, action) => {
 			state = {
 				id: action.payload.id,
-				isAuthenticated: action.payload.isAuthenticated,
+				username: action.payload.username,
+				email: action.payload.email,
 				firstName: action.payload.firstName,
 				lastName: action.payload.lastName,
-				dob: action.payload.dob,
-				mobileNumber: action.payload.mobileNumber,
-				lastLogin: action.payload.lastLogin,
-				emailAddress: action.payload.emailAddress,
+				gender: action.payload.gender,
+				image: action.payload.image,
+				accessToken: action.payload.accessToken,
+				refreshToken: action.payload.refreshToken,
 			};
 
 			return state;
